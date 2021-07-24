@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import com.ibareq.weathersample.data.Status
 import com.ibareq.weathersample.data.response.WeatherResponse
 import com.ibareq.weathersample.databinding.ActivityMainBinding
@@ -11,6 +12,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import com.ibareq.weathersample.data.repository.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -35,15 +39,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getWeatherForCity(cityName: String){
-        disposable.add(
-            WeatherRepository.getWeatherForCity(cityName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onWeatherResult)
-        )
+        var flow = WeatherRepository.getWeatherForCity(cityName).flowOn(Dispatchers.Default)
+        lifecycleScope.launch {
+            flow.collect {
+                onWeatherResult(it)
+            }
+        }
     }
 
-    private fun onWeatherResult(response: Status<WeatherResponse>){
+    fun onWeatherResult(response: Status<WeatherResponse>){
         hideAllViews()
         when(response){
             is Status.Error -> {
@@ -79,8 +83,6 @@ class MainActivity : AppCompatActivity() {
     companion object{
         const val TAG = "BK_PROGRAMMER"
     }
-
-
 }
 
 fun View.hide() {
