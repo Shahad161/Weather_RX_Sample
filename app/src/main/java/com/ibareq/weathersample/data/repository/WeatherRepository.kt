@@ -7,7 +7,6 @@ import com.ibareq.weathersample.data.response.LocationResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 
 
 object WeatherRepository {

@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getWeatherForCity(cityName: String){
-        var flow = WeatherRepository.getWeatherForCity(cityName).flowOn(Dispatchers.Default)
+        val flow = WeatherRepository.getWeatherForCity(cityName).flowOn(Dispatchers.IO)
         lifecycleScope.launch {
             flow.collect {
                 onWeatherResult(it)
