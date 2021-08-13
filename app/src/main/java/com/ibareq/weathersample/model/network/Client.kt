@@ -1,8 +1,8 @@
-package com.ibareq.weathersample.data.network
+package com.ibareq.weathersample.model.network
 
-import com.ibareq.weathersample.data.Status
-import com.ibareq.weathersample.data.response.LocationResponse
-import com.ibareq.weathersample.data.response.WeatherResponse
+import com.ibareq.weathersample.model.Status
+import com.ibareq.weathersample.model.response.LocationResponse
+import com.ibareq.weathersample.model.response.WeatherResponse
 
 class Client(
     private var network: Network,

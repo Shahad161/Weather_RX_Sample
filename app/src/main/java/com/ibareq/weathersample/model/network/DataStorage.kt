@@ -1,9 +1,9 @@
-package com.ibareq.weathersample.data.network
+package com.ibareq.weathersample.model.network
 
 import com.google.gson.Gson
-import com.ibareq.weathersample.data.Status
-import com.ibareq.weathersample.data.response.LocationResponse
-import com.ibareq.weathersample.data.response.WeatherResponse
+import com.ibareq.weathersample.model.Status
+import com.ibareq.weathersample.model.response.LocationResponse
+import com.ibareq.weathersample.model.response.WeatherResponse
 import okhttp3.Response
 
 class DataStorage(private val gson: Gson): IDataStorage{

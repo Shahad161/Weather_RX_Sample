@@ -1,13 +1,13 @@
-package com.ibareq.weathersample.data.repository
+package com.ibareq.weathersample.model.repository
 
 import com.google.gson.Gson
-import com.ibareq.weathersample.data.Status
-import com.ibareq.weathersample.data.network.Client
-import com.ibareq.weathersample.data.network.DataStorage
-import com.ibareq.weathersample.data.network.Network
+import com.ibareq.weathersample.model.Status
+import com.ibareq.weathersample.model.network.Client
+import com.ibareq.weathersample.model.network.DataStorage
+import com.ibareq.weathersample.model.network.Network
 import io.reactivex.rxjava3.core.Observable
-import com.ibareq.weathersample.data.response.WeatherResponse
-import com.ibareq.weathersample.data.response.LocationResponse
+import com.ibareq.weathersample.model.response.WeatherResponse
+import com.ibareq.weathersample.model.response.LocationResponse
 import okhttp3.OkHttpClient
 
 

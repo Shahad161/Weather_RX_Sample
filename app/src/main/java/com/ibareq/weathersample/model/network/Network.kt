@@ -1,4 +1,4 @@
-package com.ibareq.weathersample.data.network
+package com.ibareq.weathersample.model.network
 
 import okhttp3.OkHttpClient
 import okhttp3.Request

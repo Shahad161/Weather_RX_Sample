@@ -1,8 +1,8 @@
 package com.ibareq.weathersample.ui
 
 import android.view.LayoutInflater
-import com.ibareq.weathersample.data.Status
-import com.ibareq.weathersample.data.response.WeatherResponse
+import com.ibareq.weathersample.model.Status
+import com.ibareq.weathersample.model.response.WeatherResponse
 import com.ibareq.weathersample.databinding.ActivityMainBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
