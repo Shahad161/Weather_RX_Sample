@@ -4,17 +4,19 @@ import com.ibareq.weathersample.data.Status
 import com.ibareq.weathersample.data.response.LocationResponse
 import com.ibareq.weathersample.data.response.WeatherResponse
 
-object Client{
-    private lateinit var dataStorage: DataStorage
-    private lateinit var network: Network
+class Client(
+    private var network: Network,
+    private var dataStorage: IDataStorage
+) {
 
     fun getWeatherForCity(cityId: Int): Status<WeatherResponse>{
-       val response =  network.getWeatherForCity(cityId)
-        return dataStorage.getWeatherResponse(response)
+       val response =  network.getWeatherForCityResponse(cityId)
+        return dataStorage.getWeatherStatus(response)
     }
 
     fun getLocationResponse(cityName: String): Status<LocationResponse>{
         val response = network.getLocationResponse(cityName)
-        return dataStorage.getLocationResponse(response)
+        return dataStorage.getLocationStatus(response)
     }
+
 }

@@ -6,9 +6,9 @@ import com.ibareq.weathersample.data.response.LocationResponse
 import com.ibareq.weathersample.data.response.WeatherResponse
 import okhttp3.Response
 
-class DataStorage(private val gson: Gson): iDataStorage{
+class DataStorage(private val gson: Gson): IDataStorage{
 
-    fun getStatusOfWeatherForCity(response: Response): Status<WeatherResponse>{
+    override fun getWeatherStatus(response: Response): Status<WeatherResponse> {
         return if (response.isSuccessful){
             val weatherResponse = gson.fromJson(response.body!!.string(), WeatherResponse::class.java)
             Status.Success(weatherResponse)
@@ -17,7 +17,7 @@ class DataStorage(private val gson: Gson): iDataStorage{
         }
     }
 
-    fun getStatusOfLocationResponse(response: Response): Status<LocationResponse>{
+    override fun getLocationStatus(response: Response): Status<LocationResponse> {
         return if (response.isSuccessful){
             val locationResponse = gson.fromJson(response.body!!.string(), LocationResponse::class.java)
             Status.Success(locationResponse)
@@ -26,17 +26,8 @@ class DataStorage(private val gson: Gson): iDataStorage{
         }
     }
 
-
     private fun errorMessage(response: Response): Status.Error {
         return Status.Error(response.message)
-    }
-
-    override fun getWeatherResponse(response: Response): Status<WeatherResponse> {
-        return getStatusOfWeatherForCity(response)
-    }
-
-    override fun getLocationResponse(response: Response): Status<LocationResponse> {
-        return getStatusOfLocationResponse(response)
     }
 
 }

@@ -1,13 +1,19 @@
 package com.ibareq.weathersample.data.repository
 
+import com.google.gson.Gson
 import com.ibareq.weathersample.data.Status
 import com.ibareq.weathersample.data.network.Client
+import com.ibareq.weathersample.data.network.DataStorage
+import com.ibareq.weathersample.data.network.Network
 import io.reactivex.rxjava3.core.Observable
 import com.ibareq.weathersample.data.response.WeatherResponse
 import com.ibareq.weathersample.data.response.LocationResponse
+import okhttp3.OkHttpClient
 
 
 object WeatherRepository {
+
+    private var Client: Client = Client(Network(OkHttpClient()), DataStorage(Gson()))
     fun getWeatherForCity(cityName: String): Observable<Status<WeatherResponse>> {
         return getLocationInfo(cityName).flatMap {
             when(it){
@@ -35,7 +41,6 @@ object WeatherRepository {
                 }
             }
         }
-
     }
 
     private fun getLocationInfo(cityName: String): Observable<Status<LocationResponse>> {
